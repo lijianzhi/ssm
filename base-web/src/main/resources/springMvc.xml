@@ -25,12 +25,12 @@
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass"
                   value="org.springframework.web.servlet.view.JstlView" />
-        <property name="prefix" value="/WEB-INF/jsp/" />
+        <property name="prefix" value="/WEB-INF/pages/" />
         <property name="suffix" value=".jsp" />
     </bean>
 
-    <!-- 对上传文件的解析,拦截处理，做权限管理-->
-    <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
+   <!-- 对上传文件的解析,拦截处理，做权限管理-->
+   <!-- <bean id="multipartResolver"  class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/fpre*"/>
@@ -40,11 +40,13 @@
             <mvc:mapping path="/fore*"/>
             <bean class="com.how2java.tbao.interceptor.OtherInterceptor"/>
         </mvc:interceptor>
-    </mvc:interceptors>
+    </mvc:interceptors>-->
 
     <!-- 引用dubbo服务 -->
     <dubbo:application name="base-web"/>
-    <dubbo:registry protocol="zookeeper" address="192.168.93.35:2181"/>
+    <dubbo:registry protocol="zookeeper" address="localhost:2181"/>
+    <!-- 消费方用什么协议获取服务（用dubbo协议在20880端口暴露服务） -->
+    <dubbo:protocol port="20880"/>
     <dubbo:reference interface="com.dmsd.serviceApi.CategoryServiceITF" id="CategoryService" />
 
 </beans>

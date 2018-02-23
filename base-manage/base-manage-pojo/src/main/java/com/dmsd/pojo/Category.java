@@ -1,6 +1,8 @@
 package com.dmsd.pojo;
 
-public class Category {
+import java.io.Serializable;
+
+public class Category implements Serializable{
     private Integer id;
 
     private String name;
@@ -19,5 +21,8 @@ public class Category {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+    public String toString(){
+        return this.id+""+this.name;
     }
 }
